@@ -10,21 +10,33 @@ var github = new GitHubApi({
 var app = express();
 
 
-app.use('/static', express.static('public'));
 
-app.use('/js', express.static('public/js'));
 
-app.get('/register', function(req, res) {
-  res.sendFile(process.cwd() + "/public/register.html");
+app.get('/add/:val1/:val2', function(req, res) {
+  var total = parseInt(req.params.val1) + parseInt(req.params.val2);
+  console.log(total);
+  res.send(total);
 });
 
-app.get('/dashboard', function(req, res) {
-  res.sendFile(process.cwd() + "/public/dashboard.html");
+app.get('/sub/:val1/:val2', function(req, res) {
+  var total = parseInt(req.params.val1) - parseInt(req.params.val2);
+  console.log(total);
+  res.send(total);
 });
 
-app.get("/", function(req, res) {
-  res.sendFile(process.cwd() + "/index.html");
+app.get('/mult/:val1/:val2', function(req, res) {
+  var total = parseInt(req.params.val1) * parseInt(req.params.val2);
+  console.log(total);
+  res.send(total);
 });
+
+app.get('/div/:val1/:val2', function(req, res) {
+  var total = parseInt(req.params.val1) / parseInt(req.params.val2);
+  console.log(total);
+  res.send(total);
+});
+
+
 
 app.listen(PORT, function() {
   console.log('Listening on port %s', PORT);
